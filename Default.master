@@ -1,0 +1,621 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Default.master.cs" Inherits="_Default" %>
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="cc1" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Guia de Festas Curitiba</title>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <link id="CssSite" href="Styles.css" rel="stylesheet" type="text/css" runat="server" />
+        <meta name="robots" content="index,follow" />
+        <meta name="url" content="www.guiadefestascuritiba.com.br">
+        <meta name="description" content="Tudo para sua festa desde a locação do espaço até a animação, materias para festa, e tudo que voce precisa.">
+        <meta name="keywords" content="eventos,decoração,festa,buffet,festas,infantil,serviços,bolos,curitiba,salão,ambientação,15 anos,artigos,artísticos,automóveis,bairro,balão,bandas,bartender,beleza,break,brinquedos,casamentos,cenários,cerimonial,cestas,churrasco,chá clubes,coffe,confecção,congelados,convites,distribuidoras,djs,doces,domicílio,empresariais,equipamentos,fantasias,filmagem,garçon,floricultura,formaturas,fotografia,armazem,infantil,decoração,festas,guia,balões">
+        <meta name="charset" content="ISO-8859-1">
+        <meta name="autor" content="Andre Budziak Neto">
+        <meta name="revisit-after" content="1">
+        <meta http-equiv="imagetoolbar" content="no">
+        <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        try {
+        var pageTracker = _gat._getTracker("UA-7305791-1");
+        pageTracker._trackPageview();
+        } catch (err) { }
+        </script>
+
+        <!-- Inclua esta tag na seção head ou logo antes da tag de fechamento da seção body -->
+        <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+            { lang: 'pt-BR' }
+        </script>
+       
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>  
+
+    <script type="text/javascript">
+        function imgFI_onmouseover() 
+        {
+            $find("programmaticModalPopupBehavior").show();
+        }
+
+        function imgFI_onmouseout() 
+        {
+            $find("programmaticModalPopupBehavior").hide();
+        }
+
+        function montaBanner(codigo,descricao,largura,altura) 
+        {
+            var banner = "";
+            banner += "<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' ";
+            banner += "codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0'";
+            banner += "width='" + largura + "' height='" + altura + "'";
+            banner += "title='" + codigo + "";
+            banner += "<param name='movie' value='" + descricao + "'>";
+            banner += "<param name='quality' value='High'>";
+            banner += "<param name='_cx' value='4763'>";
+            banner += "<param name='_cy' value='1323'>";
+            banner += "<param name='FlashVars' value>";
+            banner += "<param name='Src' value='" + descricao + "'>";
+            banner += "<param name='WMode' value='Window'>";
+            banner += "<param name='Play' value='-1'>";
+            banner += "<param name='Loop' value='-1'>";
+            banner += "<param name='SAlign' value>";
+            banner += "<param name='Menu' value='-1'>";
+            banner += "<param name='Base' value>";
+            banner += "<param name='AllowScriptAccess' value>";
+            banner += "<param name='Scale' value='ShowAll'>";
+            banner += "<param name='DeviceFont' value='0'>";
+            banner += "<param name='EmbedMovie' value='0'>";
+            banner += "<param name='BGColor' value>";
+            banner += "<param name='SWRemote' value>";
+            banner += "<param name='MovieData' value>";
+            banner += "<param name='SeamlessTabbing' value='1'>";
+            banner += "<param name='Profile' value='0'>";
+            banner += "<param name='ProfileAddress' value>";
+            banner += "<param name='ProfilePort' value='0'>";
+            banner += "<param name='AllowNetworking' value='all'>";
+            banner += "<param name='AllowFullScreen' value='false'>";
+            banner += "<embed src='" + descricao + "' quality='high' ";
+            banner += "pluginspage='http://www.macromedia.com/go/getflashplayer' ";
+            banner += "type='application/x-shockwave-flash' width='" + largura + "'";
+            banner += "height='" + altura + "'></embed>";
+            banner += "</object>";      
+
+            $('#<%= lblVizualiza.ClientID %>').html(banner);
+        }
+
+        $('#btnFechar').click(function () 
+        {
+            $find("programmaticModalPopupBehavior").hide();
+            
+            return false;
+        });
+
+    </script>
+
+</head>
+<body oncontextmenu="return false;">
+    <form id="form1" runat="server">
+    <div>
+    <center>
+        <cc1:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" EnablePartialRendering="true" EnableScriptGlobalization="true"></cc1:ToolkitScriptManager>
+
+        <asp:Label ID="lblCodigoCategoria" runat="server"></asp:Label>
+                          
+        <asp:Label ID="lblDescricao" runat="server"></asp:Label>
+                          
+        <asp:Label ID="lblCodigo" runat="server"></asp:Label>
+        
+        
+           <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+           <ContentTemplate>            
+            <asp:Timer ID="Timer1" runat="server" Interval="20000" ontick="Timer1_Tick">
+            </asp:Timer>
+            <table style="width: 760px;" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center" >
+                <table border="0" cellpadding="0" cellspacing="0" style="width:100%;" 
+                    bgcolor="White">
+                    <tr>
+                        <td align="center">
+                           <table width="760px" border="0" style="border-collapse: collapse" 
+                                bordercolor="#111111" cellpadding="0" cellspacing="0">
+                           <tr>
+                              <td align="center">
+                      
+                                <table border="0" cellpadding="0" cellspacing="0" style="width:760px;" 
+                                            bgcolor="White">
+                                            <tr>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td align="center">
+                                    <table style="width: 760px;" border="0" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td align="left">
+            
+                                                <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                                                    <tr>
+                                                        <td>
+                                                            <asp:Image ID="imgLogoGuia" ImageUrl="imagens/lgguia213x79.jpg" width="213" height="75" runat="server" />                                                            
+                                                        </td>                       
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                           
+                                                            <asp:Panel ID="pnLogado" runat="server" Width="213px">
+                                                              <iframe style="WIDTH: 213px; HEIGHT: 51px" src="http://guiadefestascuritiba.mysuite.com.br/empresas/guf/verifica.php" frameborder=0 scrolling=no>
+                                                              </iframe>
+
+                                                                
+                                                            </asp:Panel>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+            
+                                            </td>
+                                            <td align="center">            
+                                               <asp:Label ID="lblBannerTopoDireito" runat="server"></asp:Label>
+           
+                                            </td>
+                                        </tr>
+                                        </table>
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td align="center">
+                                                   <asp:Label ID="lblTopo" runat="server" Text="Label"></asp:Label>                
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    &nbsp;</td>
+                                                <td align="center">
+                                                    <table width="760" border="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td width="140" align="center">
+                                                            <asp:Panel ID="pnBannerEsquerdo" runat="server" BackColor="White">
+                                                                <asp:Label ID="lblBannerSE" runat="server"></asp:Label>
+                                                            </asp:Panel>	
+		                                                </td>
+                                                        <td width="480">
+                                                        <asp:Panel ID="pnBannerCentral" runat="server" BackColor="White">
+                                                            <asp:Label ID="lblBannerCe" runat="server"></asp:Label>
+                                                        </asp:Panel>
+		                                                </td>
+                                                    <td width="140" align="center">
+                                                        <asp:Panel ID="pnBannerDireito" runat="server" BackColor="White">
+                                                            <asp:Label ID="lblBannerSD" runat="server"></asp:Label>
+                                                        </asp:Panel>
+		                                            </td>
+                                                    </tr>
+                                                    </table>
+                
+                                                </td>
+                                                <td>
+                                                    &nbsp;</td>
+                                            </tr>
+                                        </table>                               
+                  
+
+                              </td>                  
+                          </tr>
+                          </table>
+                
+                        </td>
+                        <td>
+                            &nbsp;</td>
+                    </tr>
+                </table>
+                    </td>
+        
+                </tr>        
+                <tr>
+                    <td align="center" bgcolor="#FFFFFF" valign="middle">
+                        <table border="0" cellpadding="0" cellspacing="0" style="width: 300px;">
+                            <tr>
+                                <td>
+                                    <asp:TextBox ID="txtValor" runat="server" Width="250px" Font-Names="Arial" 
+                                        Font-Size="11px"></asp:TextBox>                                           
+                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtenderDemo" 
+                                        CompletionListCssClass="AutoCompleteExtender_CompletionListItem"
+                                        runat="server"             
+                                        TargetControlID="txtValor" 
+                                        ServicePath="WebService.asmx" 
+                                        ServiceMethod="RetornaNomeCliente"
+                                        MinimumPrefixLength="1"                                                                           
+                                        EnableCaching="false" >        
+                                    </cc1:AutoCompleteExtender>
+                                </td>
+                                <td>
+                                   <asp:ImageButton ID="btnBusca" runat="server" ImageUrl="~/imagens/PESQUISAR.png" onclick="btnBusca_Click" />
+                                            </td>
+                                <td>
+                                    &nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>        
+                <tr>
+                    <td align="center" bgcolor="#FFFFFF">
+                        &nbsp;</td>
+                </tr>        
+                </table> 
+           </ContentTemplate>         
+           </asp:UpdatePanel>
+           
+ 
+           
+             <table border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse; width:800px; border-color:#111111; background-color:#FFFFFF;" id="tblPrincipal" >
+             <tr>
+               <td align="center" valign="top" bgcolor="#FFFFDF" style="width:180px;" >
+       
+               <div align="left">
+                 <table border="0" cellpadding="0" cellspacing="0" 
+                       style="border-collapse: collapse" bordercolor="#111111" width="180px" 
+                       id="AutoNumber3">
+                   <tr>
+                     <td width="180px" height="30px" bgcolor="#FFCC66">
+             
+                         <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" 
+                             SelectMethod="montamenu" TypeName="WebService">
+                             <SelectParameters>
+                                 <asp:Parameter DefaultValue="1" Name="opcao" Type="String" />
+                             </SelectParameters>
+                         </asp:ObjectDataSource>
+                     
+                         <asp:Label ID="lblLocais" runat="server" Text="LOCAIS" Font-Bold="True" 
+                             Font-Size="14px" ForeColor="#FF6600" Font-Names="Verdana"></asp:Label>
+                      </td>
+                   </tr>
+                   <tr>
+                     <td>             
+                     <!-- Menu Um  !-->
+                
+                        <asp:Panel ID="pnMenu" runat="server">
+                           <asp:GridView ID="grdMenu" runat="server" Width=180px GridLines="None" 
+                              ShowHeader="False" AutoGenerateColumns="False" BorderStyle="None" 
+                                DataSourceID="ObjectDataSource2" onrowdatabound="grdMenu_RowDataBound" >
+                               <RowStyle BorderStyle="None" />
+                              <Columns>
+                                  <asp:TemplateField ControlStyle-Height="18px" ControlStyle-Font-Overline="false" ControlStyle-CssClass="TituloBrancoa2" ItemStyle-CssClass="TituloBrancoa2" ItemStyle-HorizontalAlign="Left" >
+                                     <ItemTemplate>
+                                         <asp:HyperLink ID="lnkCategoria" runat="server">&nbsp;&nbsp;&nbsp;&nbsp;<%# Eval("Descricao") %></asp:HyperLink>
+                                     </ItemTemplate>
+                                  </asp:TemplateField>
+                              </Columns>
+                           </asp:GridView>             
+                        </asp:Panel>      
+              
+                     </td>
+                   </tr>
+                   <tr>
+                     <td width="180px" height="20" bgcolor="#FFFFDF">
+                         &nbsp;</td>
+                   </tr>
+                   <tr>
+                     <td width="180px" height="30px" bgcolor="#FFCC66">
+                         <asp:Label ID="lblServicos" runat="server" Text="SERVIÇOS" Font-Bold="True" 
+                             Font-Size="14px" ForeColor="#FF6600" Font-Names="Verdana"></asp:Label>             
+                          <asp:ObjectDataSource ID="ObjectDataSource3" runat="server" 
+                             SelectMethod="montamenu" TypeName="WebService">
+                             <SelectParameters>
+                                <asp:Parameter DefaultValue="2" Name="opcao" Type="String" />
+                             </SelectParameters>
+                          </asp:ObjectDataSource>
+                     
+                     </td>
+                   </tr>
+                   <tr>
+                     <td>
+                     <!-- Menu Dois  !-->
+                          
+                        <asp:Panel ID="pnMenu2" runat="server">
+                           <asp:GridView ID="grdMenu2" runat="server" Width=180px GridLines="None" 
+                              ShowHeader="False" AutoGenerateColumns="False" BorderStyle="None" 
+                                DataSourceID="ObjectDataSource3" onrowdatabound="grdMenu2_RowDataBound" >
+                               <RowStyle BorderStyle="None" />
+                              <Columns>
+                                  <asp:TemplateField ControlStyle-Height="18px" ControlStyle-Font-Overline="false" ControlStyle-CssClass="TituloBrancoa2" ItemStyle-CssClass="TituloBrancoa2" ItemStyle-HorizontalAlign="Left" >
+                                     <ItemTemplate>
+                                         <asp:HyperLink ID="lnkCategoria" runat="server">&nbsp;&nbsp;&nbsp;&nbsp;<%# Eval("Descricao") %></asp:HyperLink>
+                                     </ItemTemplate>
+                                  </asp:TemplateField>
+                              </Columns>
+                           </asp:GridView>             
+                        </asp:Panel>                                                   
+           
+                
+                     </td>
+             
+                   </tr>
+                 </table>
+               </div>
+               </td>
+              <td style="width:400px;" align="center" valign="top" bgcolor="#FFFFFF">
+                 <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                 </asp:ContentPlaceHolder>      
+               </td>
+               <td align="center" valign="top" bgcolor="#FFFFDF">
+                  <table style="width:180px;">
+                  <tr>
+                     <td align="center" bgcolor="#FFCC66" height="30px">
+                        <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" 
+                           SelectMethod="montabannerlateral" TypeName="WebService">
+                           <SelectParameters>
+                              <asp:Parameter DefaultValue="2" Name="localbanner" Type="String" />
+                           </SelectParameters>
+                        </asp:ObjectDataSource>
+                   
+             
+                        <asp:Label ID="lblTituloPub" runat="server" Font-Bold="True" Font-Names="Verdana" 
+                         Font-Size="14px" ForeColor="#FF6600">PUBLICIDADE</asp:Label>  
+             
+                     </td>
+                  </tr>          
+                  <tr>
+                     <td align="center" style="width: 180px;">
+                
+                           <asp:DataList ID="dlPublicidade" runat="server" 
+                               DataSourceID="ObjectDataSource4" 
+                               onitemdatabound="dlPublicidade_ItemDataBound" Width="180px">
+                              <ItemTemplate>
+                                <table style="width: 180px;">
+                                         <tr>
+                                             <td align="center" >                                                 
+                                                 <asp:Label ID="lblBanner" runat="server" Text="Label"></asp:Label>
+                                             </td>
+                                         </tr>
+                                 </table>                      
+                      
+                              </ItemTemplate>
+                           </asp:DataList>
+                
+                     </td>
+                  </tr>
+                  </table>
+                </td>
+
+         
+             </tr>
+           </table>
+  
+           <div align="center">
+              <table width="760" height="70" border="0" style="border-collapse: collapse" bordercolor="#111111" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                    <tr>
+                        <td align="center" class="TextoCinzaEscuro2" valign="top">
+                           <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="760" height="70" title="Base">
+                              <param name="movie" value="imagens/base.swf">
+                              <param name="quality" value="High">
+                             <param name="_cx" value="20108">
+                             <param name="_cy" value="1852">
+                             <param name="FlashVars" value>
+                             <param name="Src" value="imagens/base.swf">
+                             <param name="Play" value="0">
+                             <param name="Loop" value="-1">
+                             <param name="SAlign" value>
+                             <param name="Menu" value="-1">
+                             <param name="Base" value>
+                             <param name="AllowScriptAccess" value>
+                             <param name="Scale" value="ShowAll">
+                             <param name="DeviceFont" value="0">
+                             <param name="EmbedMovie" value="0">
+                             <param name="BGColor" value>
+                             <param name="SWRemote" value>
+                             <param name="MovieData" value>
+                             <param name="SeamlessTabbing" value="1">
+                             <param name="Profile" value="0">
+                             <param name="ProfileAddress" value>
+                             <param name="ProfilePort" value="0">
+                             <param name="AllowNetworking" value="all">
+                             <param name="AllowFullScreen" value="false">
+                              <embed src="imagens/base.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="760" height="66"></embed></object>                                                        
+                        </td>
+                    </tr>
+                </table>    
+           </div>
+
+                <asp:Panel ID="pnChatCli" runat="server" BackColor="#FFFFDF"  Height="300px" Width="300px">  
+                   <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                           <tr>
+                               <td colspan="2" align="center">
+                                  <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Names="Arial" 
+                                       Font-Size="12px" ForeColor="#FF6600" Text="eChat - Guia de Festas"></asp:Label>                   
+                               </td>
+                               <td align="right" valign="top">
+                                   <asp:ImageButton ID="btnMini" runat="server" ImageUrl="~/imagens/close.png" onclick="btnMini_Click" />
+                               </td>
+                           </tr>
+                           <tr>
+                               <td align="center" colspan="3">
+                                   <asp:Label ID="Label5" runat="server" Font-Bold="True" Font-Names="Arial" 
+                                       Font-Size="12px" ForeColor="#FF6600" Text="Login Cliente Guia de Festas"></asp:Label>
+                               </td>
+                           </tr>
+                              <tr>
+                                  <td align="right">
+                                      &nbsp;</td>
+                                  <td>
+                                      &nbsp;</td>
+                                  <td align="left">
+                                      &nbsp;</td>
+                              </tr>
+                           <tr>
+                               <td align="right">
+                                   <asp:Label ID="lblPapo2" runat="server" Font-Names="Arial" Font-Size="12px" 
+                                       ForeColor="#FF6600">Usuario:</asp:Label>
+                               </td>
+                               <td>
+                                   <asp:TextBox ID="txtUsuario" runat="server" CssClass="edit" ></asp:TextBox>
+                               </td>
+                               <td align="left">
+                                   &nbsp;</td>
+                           </tr>
+                              <tr>
+                                  <td align="right">
+                                      <asp:Label ID="lblPapo0" runat="server" Font-Names="Arial" Font-Size="12px" 
+                                          ForeColor="#FF6600">Senha:</asp:Label>
+                                  </td>
+                                  <td>
+                                      <asp:TextBox ID="txtSenha" runat="server" TextMode="Password" CssClass="edit"></asp:TextBox>
+                                  </td>
+                                  <td align="left">
+                                      &nbsp;</td>
+                              </tr>
+                              <tr>
+                                  <td align="right">
+                                      &nbsp;</td>
+                                  <td>
+                                      &nbsp;</td>
+                                  <td align="left">
+                                      &nbsp;</td>
+                              </tr>
+                              <tr>
+                                  <td align="center" colspan="3">                         
+                                     <asp:ImageButton ID="btnLoginCliente" runat="server" ImageUrl="~/imagens/ENVIAR.png" 
+                                          onclick="btnLoginCliente_Click" />
+                                  </td>
+                              </tr>
+                       </table>               
+                </asp:Panel>          
+                <cc1:RoundedCornersExtender ID="RoundedCornersExtender1" BorderColor="#FFCC66"
+                    runat="server" Enabled="True" TargetControlID="pnChatCli">
+                </cc1:RoundedCornersExtender>
+                <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender1" runat="server"
+                    TargetControlID="pnChatCli"         
+                    VerticalSide="Bottom"
+                    VerticalOffset="2"
+                    HorizontalSide="Left"
+                    HorizontalOffset="10"
+                    ScrollEffectDuration="1">            
+                </cc1:AlwaysVisibleControlExtender>       
+
+                   <asp:Panel ID="pnChatUsr" runat="server" BackColor="#FFFFDF"  Height="300px" Width="300px">  
+                      <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                           <tr>
+                               <td colspan="2" align="center">
+                                  <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Names="Arial" 
+                                       Font-Size="12px" ForeColor="#FF6600" Text="eChat - Guia de Festas"></asp:Label>                   
+                               </td>
+                               <td align="right" valign="top">
+                                   <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/imagens/close.png" onclick="btnMini_Click" />
+                               </td>
+                           </tr>
+                           <tr>
+                               <td align="center" colspan="3">
+                                   <asp:Label ID="Label3" runat="server" Font-Bold="True" Font-Names="Arial" 
+                                       Font-Size="12px" ForeColor="#FF6600" 
+                                       Text="Login para Chat com Anunciantes"></asp:Label>
+                               </td>
+                           </tr>
+                              <tr>
+                                  <td align="right">
+                                      &nbsp;</td>
+                                  <td>
+                                      &nbsp;</td>
+                                  <td align="left">
+                                      &nbsp;</td>
+                              </tr>
+                           <tr>
+                               <td align="right">
+                                   <asp:Label ID="Label4" runat="server" Font-Names="Arial" Font-Size="12px" 
+                                       ForeColor="#FF6600">Usuario:</asp:Label>
+                               </td>
+                               <td>
+                                   <asp:TextBox ID="txtUsuarioCliente" runat="server" CssClass="edit"></asp:TextBox>
+                               </td>
+                               <td align="left">
+                                   &nbsp;</td>
+                           </tr>
+                              <tr>
+                                  <td align="right">
+                                      <asp:Label ID="Label6" runat="server" Font-Names="Arial" Font-Size="12px" 
+                                          ForeColor="#FF6600">E-mail:</asp:Label>
+                                  </td>
+                                  <td>
+                                      <asp:TextBox ID="txtEmailCliente" runat="server" CssClass="edit"></asp:TextBox>
+                                  </td>
+                                  <td align="left">
+                                      &nbsp;</td>
+                              </tr>
+                              <tr>
+                                  <td align="right">
+                                      &nbsp;</td>
+                                  <td>
+                                      &nbsp;</td>
+                                  <td align="left">
+                                      &nbsp;</td>
+                              </tr>
+                              <tr>
+                                  <td align="center" colspan="3">                         
+                                     <asp:ImageButton ID="btnLoginUsuario" runat="server" ImageUrl="~/imagens/ENVIAR.png" 
+                                          onclick="btnLogin_Click" />
+                                  </td>
+                              </tr>
+                       </table>
+                   </asp:Panel>
+                    <cc1:RoundedCornersExtender ID="RoundedCornersExtender2" BorderColor="#FFCC66"
+                        runat="server" Enabled="True" TargetControlID="pnChatUsr">
+                    </cc1:RoundedCornersExtender>
+                    <cc1:AlwaysVisibleControlExtender ID="AlwaysVisibleControlExtender2" runat="server"
+                        TargetControlID="pnChatUsr"         
+                        VerticalSide="Bottom"
+                        VerticalOffset="2"
+                        HorizontalSide="Left"
+                        HorizontalOffset="10"
+                        ScrollEffectDuration="1">            
+                    </cc1:AlwaysVisibleControlExtender>       
+
+          
+
+            <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+            <ContentTemplate>
+
+               <asp:Button ID="btnHd" runat="server" style="display: none;" />
+               <cc1:ModalPopupExtender runat="server" ID="mpe" BehaviorID="programmaticModalPopupBehavior" TargetControlID="btnHd" PopupControlID="puCategory" OnOkScript="__doPostBack('btnFechar','')" BackgroundCssClass="modalBackground" > </cc1:ModalPopupExtender> 
+
+            <asp:Panel runat="server" CssClass="eventModalPopup" ID="puCategory" Style="display: none;" Height="200px" Width="300px">
+             <table border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                    <td align="right">
+                        <asp:ImageButton ID="btnFechar" runat="server" 
+                            ImageUrl="~/imagens/close.png" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="3">
+                        <asp:Label ID="lblVizualiza" runat="server" Text=""></asp:Label>                    
+ 
+                        </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                    <td>
+                        &nbsp;</td>
+                </tr>
+             </table>                  
+            </asp:Panel>
+            </ContentTemplate>           
+            </asp:UpdatePanel>
+
+
+       
+       </center>        
+    </div>
+    </form>
+</body>
+</html>

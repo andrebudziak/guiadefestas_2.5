@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<urlrewrites>
+  <rule>
+    <url>/categoria/</url>
+    <rewrite>/categoria.aspx</rewrite>
+  </rule>
+  <rule>
+    <url>/categoria/([0-9]{0,})</url>
+    <rewrite>/categoria.aspx?tipo_categoria=$1</rewrite>
+  </rule>
+</urlrewrites>
